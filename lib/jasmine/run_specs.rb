@@ -26,6 +26,11 @@ t = Thread.new do
   # # ignore bad exits
 end
 t.abort_on_exception = true
+
+# monkey patch for jasmine to run inside of docker
+# source: https://github.com/jasmine/jasmine-gem/issues/285
+sleep(1)
+
 Jasmine::wait_for_listener(config.port, "jasmine server")
 puts "jasmine server started."
 
